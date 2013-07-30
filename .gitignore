@@ -1,3 +1,11 @@
+###Node###
+ 
+node_modules/
+xunit.xml
+jshint.xml
+log/
+migrations/.migrate
+
 lib-cov
 *.seed
 *.log

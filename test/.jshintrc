@@ -1,0 +1,29 @@
+/*
+ * JSHint (http://www.jshint.com/)
+ * 
+ * Configuration file for tests
+ */
+{
+  "globals": { "describe": false, "it": false, "before":false, "after":false, "beforeEach":false, "afterEach":false },
+  "forin":true,
+  "noarg":true,
+  "noempty":true,
+  "nonew":true,
+  "eqeqeq":true,
+  "bitwise":true,
+  "undef":true,
+  "unused":true,
+  "curly":true,
+  "camelcase":true,
+  "trailing":true,
+  "white":true,
+  "quotmark":"single",
+  "indent":2,
+
+  "laxcomma":true,
+  "expr":true,     /* for should library as it sometimes uses expressions instead of funcitions */
+  "es5":true,      /* for express and should library use of reserved words */
+
+  "node":true,
+  "devel":true
+}
