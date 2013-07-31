@@ -1,0 +1,27 @@
+/*
+ * JSHint (http://www.jshint.com/)
+ * 
+ * Configuration file
+ */
+{
+  "forin":true,
+  "noarg":true,
+  "noempty":true,
+  "nonew":true,
+  "eqeqeq":true,
+  "bitwise":true,
+  "undef":true,
+  "unused":true,
+  "curly":true,
+  "camelcase":true,
+  "trailing":true,
+  "white":true,
+  "quotmark":"single",
+  "indent":2,
+
+  "laxcomma":true,
+  "es5":true,
+
+  "node":true,
+  "devel":true
+}
