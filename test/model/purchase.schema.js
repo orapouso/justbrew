@@ -38,17 +38,4 @@ describe('Purchase Schema', function () {
     Schema.path('unit').options.enum.should.be.eql(['kg', 'g', 'mg', 'l', 'ml']);
     Schema.path('unit').options.type.should.be.equal(String);
   });
-/*
-  it('should have trimmed, required, string description property', function () {
-    Schema.path('description').options.trim.should.be.true;
-    Schema.path('description').options.required.should.be.true;
-    Schema.path('description').options.type.should.be.equal(String);
-  });
-
-  it('should have required, "Company" manufacturer property', function () {
-    Schema.path('manufacturer').options.required.should.be.true;
-    Schema.path('manufacturer').options.ref.should.equal('Company');
-    Schema.path('manufacturer').should.be.instanceof(SchemaTypes.ObjectId);
-  });
-*/
 });
