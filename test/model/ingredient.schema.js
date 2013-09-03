@@ -34,7 +34,11 @@ describe('Ingredient Schema', function () {
     Schema.path('description').options.type.should.be.equal(String);
   });
 
-  xit('should have required, "Purchase" purchases property', function () {
+  it('should have required, "Purchase" purchases property', function () {
+    Schema.path('purchases').options.type.should.be.a('object');
+    Schema.path('purchases').options.type.length.should.equal(1);
+    Schema.path('purchases').options.type[0].ref.should.equal('Purchase');
+    Schema.path('purchases').options.type[0].required.should.be.true;
   });
 
 });

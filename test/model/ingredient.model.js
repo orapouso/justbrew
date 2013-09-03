@@ -9,7 +9,7 @@ var mongoose = require('mongoose')
   , Ingredient = mongoose.model('Ingredient')
   , should = require('should');
 
-describe('Ingredient Model', function () {
+describe.only('Ingredient Model', function () {
   require('../helper').mongoose(mongoose, config, 'ingredient', Purchase, Ingredient);
 
   var purchase = new Purchase({
@@ -21,8 +21,7 @@ describe('Ingredient Model', function () {
   var model = new Ingredient({
     name: 'name1',
     type: 'grain',
-    description: 'description1',
-    purchases: [purchase]
+    description: 'description1'
   });
 
   it('should save new document', function (done) {
@@ -45,42 +44,41 @@ describe('Ingredient Model', function () {
     });
   });
 
-  describe('previously created document', function() {
-    it('should update', function (done) {
-      var oldName = model.name;
-      model.name = 'newname1';
-      console.log(model);
-      model.save(function (err) {
-        should.not.exist(err);
+  it('should update', function (done) {
+    var oldName = model.name;
+    model.name = 'newname1';
 
-        Ingredient.findOne({name: oldName}, function (err, model1) {
-          should.not.exist(err);
-          should.not.exist(model1);
-          done();
-        });
+    model.save(function (err, model1) {
+      should.not.exist(err);
+      model1.name.should.equal('newname1');
+
+      Ingredient.findOne({name: oldName}, function (err, model2) {
+        should.not.exist(err);
+        should.not.exist(model2);
+        done();
       });
     });
+  });
 
-    xit('should add new purchase to purchases list', function (done) {
-      /*var purchase2 = new Purchase({
-        quantity: 15,
-        available: 15,
-        unit: 'kg',
-      });
-
-      model.purchases.push(purchase2.id);
-      console.log(model);
+  it('should add new purchase to purchases list', function (done) {
+    new Purchase({
+      quantity: 15,
+      available: 15,
+      unit: 'kg',
+    }).save(function (err, purchase) {
+      should.not.exist(err);
+      model.purchases.push(purchase);
+      
       model.save(function (err) {
-        console.log(err);
         should.not.exist(err);
 
         Ingredient.findOne({name: model.name}, function (err, model1) {
           should.not.exist(err);
-          should.not.exist(model1);
-          //purchases.length.should.be.equal(2)
+          model1.purchases.length.should.equal(1);
+          model1.purchases[0].should.eql(purchase._id);
           done();
         });
-      });*/
+      });
     });
   });
   
