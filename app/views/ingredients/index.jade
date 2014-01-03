@@ -1,0 +1,14 @@
+extends ../layouts/main-content
+
+block sidebar
+  include ../includes/sidebar
+
+block middle
+.col-sm-4
+  .panel.panel-default 
+    .panel-title Ingredients 
+                 a(href='/ingredients/new',class='button') new
+    .panel-content
+      - each ingredient in ingredients
+        div.ingredient
+          div.name= ingredient.name
