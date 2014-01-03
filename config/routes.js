@@ -16,4 +16,6 @@ module.exports = function (app, passport) {
   app.post('/api/authenticate', users.checkAuth, passport.authenticate('local'), users.authenticate);
   app.all('/api/authenticate', authorization.methodNotAllowed(['POST']));
 
+  var ingredients = require('../app/controllers/ingredients');
+  app.get('/ingredients', ingredients.index);
 };
