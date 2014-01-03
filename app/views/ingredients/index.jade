@@ -4,11 +4,12 @@ block sidebar
   include ../includes/sidebar
 
 block middle
-.col-sm-4
-  .panel.panel-default 
-    .panel-title Ingredients 
-                 a(href='/ingredients/new',class='button') new
-    .panel-content
-      - each ingredient in ingredients
-        div.ingredient
-          div.name= ingredient.name
+  .col-sm-10
+    .panel.panel-success
+      .panel-heading
+        .panel-title Ingredients 
+                     a(href='/ingredients/new',class='btn btn-xs btn-link') new
+      .panel-content
+        - each ingredient in ingredients
+          div.ingredient
+            div.name= ingredient.name
