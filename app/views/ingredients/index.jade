@@ -8,7 +8,8 @@ block middle
     .panel.panel-success
       .panel-heading
         .panel-title Ingredients 
-                     a(href='/ingredients/new',class='btn btn-xs btn-link') new
+                     a(href='/ingredients/new',class='btn btn-xs btn-link') 
+                       span.glyphicon.glyphicon-plus
       .panel-content
         - each ingredient in ingredients
           div.ingredient

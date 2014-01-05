@@ -1,8 +1,10 @@
 - var user = user;
 
-header#header.navbar.navbar-fixed-top
-  .logo
-    .title Justbrew
-    .subtitle Homebrew Accounting System
-  if user
-    .user= user.name
+.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+  .container
+    .navbar-header
+      .logo
+        .title Justbrew
+        .subtitle Homebrew Accounting System
+      if user
+        .user= user.name
