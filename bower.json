@@ -1,0 +1,20 @@
+{
+  "name": "saco-cedoc",
+  "description": "Serviço de Acesso ao Conteúdo Online CEDOC",
+  "version": "1.1.0",
+  "homepage": "http://gitlab/pica/saco-cedoc",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab:pica/saco-cedoc"
+  },
+  "dependencies": {
+    "angular-resource": "~1.2.7",
+    "angular-cookies": "~1.2.7",
+    "angular-bootstrap": "~0.9.0",
+    "angular": "~1.2.7",
+    "angular-route": "~1.2.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "http://code.angularjs.org/1.1.5/angular-mocks.js"
+  }
+}

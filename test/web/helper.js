@@ -1,0 +1,25 @@
+//Helper to add some custom matchers
+var edtengine = {};
+
+(function () {
+  'use strict';
+
+  beforeEach(function () {
+    this.addMatchers({
+      toHaveClass: function (cls) {
+        this.message = function () {
+          return 'Expected "' + angular.mock.dump(this.actual) + '" to have class "' + cls + '".';
+        };
+
+        return this.actual.hasClass(cls);
+      },
+      toBeType: function (type) {
+        this.message = function () {
+          return 'Expected "' + angular.mock.dump(this.actual) + '" to be of type "' + type + '".';
+        };
+
+        return (typeof this.actual === type);
+      }
+    });
+  });
+})();

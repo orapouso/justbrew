@@ -5,6 +5,8 @@ xunit.xml
 jshint.xml
 log/
 migrations/.migrate
+components
+bower_components
 
 lib-cov
 *.seed
