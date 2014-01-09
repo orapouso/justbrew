@@ -9,16 +9,13 @@ var authorization = require('../middlewares/authorization')
 module.exports = function (app, config, passport) {
 
   function index(req, res) {
-    console.log('home index')
     res.status(200).sendfile(config.root + '/public/templates/index.html');
   }
 
   function login(req, res) {
-    console.log('home index')
     res.status(200).sendfile(config.root + '/public/templates/login.html');
   }
 
-  var home = require('../controllers/home');
   app.get('/', index);
   app.get('/ingredients', index);
   app.get('/login', login);

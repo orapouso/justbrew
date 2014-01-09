@@ -1,5 +1,5 @@
 ###Node###
- 
+
 node_modules/
 xunit.xml
 jshint.xml
@@ -7,6 +7,7 @@ log/
 migrations/.migrate
 components
 bower_components
+.migrate
 
 lib-cov
 *.seed

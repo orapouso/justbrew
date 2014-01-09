@@ -98,7 +98,8 @@ UserSchema.methods = {
     var hash = this.hash.split('::');
     var salt = hash[0];
     hash = hash[1];
-    return hash === crypto.pbkdf2Sync(password, salt, config.auth.iterations);
+    var compare = crypto.pbkdf2Sync(password, salt, config.auth.iterations, 2^config.auth.saltSize).toString('base64');
+    return hash === compare;
   },
 
   /**
@@ -114,9 +115,10 @@ UserSchema.methods = {
       return '';
     }
 
-    var salt = crypto.randomBytes(2^config.auth.saltSize);
+    var salt = crypto.randomBytes(2^config.auth.saltSize).toString('base64');
+    var hash = crypto.pbkdf2Sync(password, salt, config.auth.iterations, 2^config.auth.saltSize).toString('base64');
 
-    return salt + '::' + crypto.pbkdf2Sync(password, salt, config.auth.iterations);
+    return salt + '::' + hash;
   },
 
   /**

@@ -49,8 +49,8 @@ module.exports = function (app, config, passport) {
     }
 
     if (passport) {
-      //app.use(passport.initialize());
-      //app.use(passport.session());
+      app.use(passport.initialize());
+      app.use(passport.session());
     }
 
     if (config.accessControl) {

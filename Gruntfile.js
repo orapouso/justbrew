@@ -49,9 +49,10 @@ module.exports = function (grunt) {
         command: 'node ./node_modules/bower/bin/bower install'
       },
       server: {
-        command: [
-          './node_modules/.bin/nodemon src/server.js'
-        ].join(' && ')
+        command: './node_modules/.bin/nodemon src/server.js'
+      },
+      migrate: {
+        command: './node_modules/.bin/migrate -c src'
       }
     },
 
@@ -186,6 +187,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test:dev:e2e', ['server', 'karma:devE2e']);
 
   grunt.registerTask('install', ['shell:bower']);
+  grunt.registerTask('migrate', ['shell:migrate']);
   grunt.registerTask('build:common', ['jshint', 'test:unit', 'stylus', 'concat']);
   grunt.registerTask('build:dev', ['clean:dev', 'build:common', 'copy:dev']);
   grunt.registerTask('dev', ['build:dev', 'watch']);

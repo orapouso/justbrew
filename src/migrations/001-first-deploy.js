@@ -1,6 +1,6 @@
 require('../app/models/user');
 var env = process.env.NODE_ENV || 'development'
-  , config = require('../config/config')[env]
+  , config = require('../app/config/config')[env]
   , mongoose = require('mongoose')
   , User = mongoose.model('User');
 

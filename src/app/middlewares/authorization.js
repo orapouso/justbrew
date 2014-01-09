@@ -25,7 +25,6 @@ function respond(req, res, status) {
 
 exports.requiresAuth = function (req, res, next) {
   var authenticated = false;
-  console.log(req.path)
   if (req.path.indexOf('authenticate') < 0 && req.path.indexOf('login') < 0) {
     var accessToken = req.get('Authorization') || req.query.Authorization;
 
@@ -38,22 +37,18 @@ exports.requiresAuth = function (req, res, next) {
             req.user = user;
             return next();
           }
-          console.log('unauthorized 1')
           return respond(req, res, httpStatus.UNAUTHORIZED);
         });
         return;
       }
     }
   } else {
-    console.log('authenticated')
     authenticated = true;
   }
 
   if (authenticated) {
-    console.log('oeoeoeoaoeao')
     return next();
   }
-  console.log('unauthorized 2')
   return respond(req, res, httpStatus.UNAUTHORIZED);
 };
 
