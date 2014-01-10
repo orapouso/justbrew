@@ -2,9 +2,10 @@
  * Company Model tests
  */
 
-var mongoose = require('mongoose')
+var ROOT = process.env.ROOT
+  , mongoose = require('mongoose')
   , env = process.env.NODE_ENV || 'test'
-  , config = require('../../config/config')[env]
+  , config = require(ROOT + '/app/config/config')[env]
   , Company = mongoose.model('Company')
   , should = require('should');
 

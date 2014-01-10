@@ -1,4 +1,5 @@
-var userConfig = require('../../user-config');
+var ROOT = process.env.ROOT
+  , userConfig = require(ROOT + '/user-config');
 
 describe('User Configuration', function () {
   it('should have "development", "test" and "production" environments', function () {
@@ -8,7 +9,7 @@ describe('User Configuration', function () {
   });
 
   describe('Production Environment', function () {
-    var dirName = require('path').normalize(__dirname.replace('/test/config', '').replace('\\test\\config', ''));
+    var dirName = require('path').normalize(__dirname.replace('/test/app/config', '/src').replace('\\test\\app\\config', '\\src'));
     it('should have root to ' + dirName, function () {
       userConfig.production.root.should.equal(dirName);
     });

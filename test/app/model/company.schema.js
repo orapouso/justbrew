@@ -2,11 +2,8 @@
  * Company Schema tests
  */
 
-require('../../app/models/user');
 var mongoose = require('mongoose')
-  , SchemaTypes = mongoose.Schema.Types
-  , Company = mongoose.model('Company')
-  , should = require('should');
+  , Company = mongoose.model('Company');
 
 var Schema = Company.schema;
 var treeSize = 3 + 1; //3 implicit mongoose properties

@@ -1,9 +1,10 @@
-var request = require('supertest')
+var ROOT = process.env.ROOT
+  , request = require('supertest')
   , env = process.env.NODE_ENV || 'test'
-  , config = require('../../config/config')[env]
+  , config = require(ROOT + '/app/config/config')[env]
   , app = require('express')()
   , passport = require('passport')
-  , httpStatus = require('../../app/helpers/http-status')
+  , httpStatus = require(ROOT + '/app/helpers/http-status')
   , async = require('async');
 
 app.use(function (req, res, next) {
@@ -13,8 +14,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('../../config/express')(app, config, passport);
-require('../../config/routes')(app, passport);
+require(ROOT + '/app/config/express')(app, config, passport);
+require(ROOT + '/app/config/routes')(app, config, passport);
 
 var methods = ['get', 'post', 'put', 'del'];
 var apis = [{

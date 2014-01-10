@@ -2,11 +2,9 @@
  * Equipment Schema tests
  */
 
-require('../../app/models/user');
 var mongoose = require('mongoose')
   , SchemaTypes = mongoose.Schema.Types
-  , Equipment = mongoose.model('Equipment')
-  , should = require('should');
+  , Equipment = mongoose.model('Equipment');
 
 var Schema = Equipment.schema;
 var treeSize = 3 + 3; //3 implicit mongoose properties

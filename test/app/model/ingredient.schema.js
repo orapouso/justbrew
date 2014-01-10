@@ -2,11 +2,9 @@
  * Ingredient Schema tests
  */
 
-require('../../app/models/user');
 var mongoose = require('mongoose')
   , SchemaTypes = mongoose.Schema.Types
-  , Ingredient = mongoose.model('Ingredient')
-  , should = require('should');
+  , Ingredient = mongoose.model('Ingredient');
 
 var Schema = Ingredient.schema;
 var treeSize = 4 + 3; //3 implicit mongoose properties
@@ -35,7 +33,7 @@ describe('Ingredient Schema', function () {
   });
 
   it('should have required, "Purchase" purchases property', function () {
-    Schema.path('purchases').options.type.should.be.a('object');
+    Schema.path('purchases').options.type.should.be.instanceof(Array);
     Schema.path('purchases').options.type.length.should.equal(1);
     Schema.path('purchases').options.type[0].ref.should.equal('Purchase');
     Schema.path('purchases').options.type[0].required.should.be.true;

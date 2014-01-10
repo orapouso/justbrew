@@ -9,11 +9,28 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-karma');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    env: {
+      production: {
+        NODE_ENV: 'production',
+        ROOT: require('path').normalize(__dirname)
+      },
+      dev: {
+        NODE_ENV: 'development',
+        ROOT: require('path').normalize(__dirname) + '/src'
+      },
+      test: {
+        NODE_ENV: 'test',
+        ROOT: require('path').normalize(__dirname) + '/src'
+      }
+    },
 
     copy: {
       build: {
@@ -83,6 +100,10 @@ module.exports = function (grunt) {
       tests: {
         files: 'test/web/unit/**/*.js',
         tasks: [ 'test:unit' ]
+      },
+      node: {
+        files: [ 'src/app/**/*.js', 'test/app/**/*.js' ],
+        tasks: [ 'test:node' ]
       }
     },
 
@@ -160,6 +181,24 @@ module.exports = function (grunt) {
       testserver: {}
     },
 
+    mochaTest: {
+      dev: {
+        options: {
+          mocha: require('mocha'),
+          reporter: 'spec',
+          require: [
+            'should', 'src/app/config/util.js',
+            'src/app/models/company.js',
+            'src/app/models/equipment.js',
+            'src/app/models/ingredient.js',
+            'src/app/models/purchase.js',
+            'src/app/models/user.js'
+          ]
+        },
+        src: 'test/app/**/*.js'
+      }
+    },
+
     karma: {
       devE2e: {
         configFile: 'test/web/karma-e2e.conf.js'
@@ -185,10 +224,11 @@ module.exports = function (grunt) {
   grunt.registerTask('test:e2e', ['server', 'karma:e2e']);
   grunt.registerTask('test:dev', ['karma:devUnit']);
   grunt.registerTask('test:dev:e2e', ['server', 'karma:devE2e']);
+  grunt.registerTask('test:node', ['env:test', 'mochaTest:dev']);
 
   grunt.registerTask('install', ['shell:bower']);
   grunt.registerTask('migrate', ['shell:migrate']);
-  grunt.registerTask('build:common', ['jshint', 'test:unit', 'stylus', 'concat']);
+  grunt.registerTask('build:common', ['jshint', 'test:node', 'test:unit', 'stylus', 'concat']);
   grunt.registerTask('build:dev', ['clean:dev', 'build:common', 'copy:dev']);
   grunt.registerTask('dev', ['build:dev', 'watch']);
   grunt.registerTask('build', ['clean:build', 'build:common', 'copy:build']);

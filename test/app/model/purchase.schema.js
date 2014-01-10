@@ -2,11 +2,8 @@
  * Purchase Schema tests
  */
 
-require('../../app/models/user');
 var mongoose = require('mongoose')
-  , SchemaTypes = mongoose.Schema.Types
-  , Purchase = mongoose.model('Purchase')
-  , should = require('should');
+  , Purchase = mongoose.model('Purchase');
 
 var Schema = Purchase.schema;
 var treeSize = 4 + 3; //3 implicit mongoose properties

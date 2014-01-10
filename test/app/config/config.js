@@ -1,5 +1,6 @@
-var userConfig = JSON.parse(JSON.stringify(require('../../user-config')))
-  , config = require('../../config/config');
+var ROOT = process.env.ROOT
+  , userConfig = JSON.parse(JSON.stringify(require(ROOT + '/user-config')))
+  , config = require(ROOT + '/app/config/config');
 
 var prodKeys = Object.keys(config.production)
   , devKeys = Object.keys(config.development)

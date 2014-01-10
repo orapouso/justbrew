@@ -2,14 +2,15 @@
  * Ingredient Model tests
  */
 
-var mongoose = require('mongoose')
+var ROOT = process.env.ROOT
+  , mongoose = require('mongoose')
   , env = process.env.NODE_ENV || 'test'
-  , config = require('../../config/config')[env]
+  , config = require(ROOT + '/app/config/config')[env]
   , Purchase = mongoose.model('Purchase')
   , Ingredient = mongoose.model('Ingredient')
   , should = require('should');
 
-describe.only('Ingredient Model', function () {
+describe('Ingredient Model', function () {
   require('../helper').mongoose(mongoose, config, 'ingredient', Purchase, Ingredient);
 
   var purchase = new Purchase({
@@ -68,7 +69,7 @@ describe.only('Ingredient Model', function () {
     }).save(function (err, purchase) {
       should.not.exist(err);
       model.purchases.push(purchase);
-      
+
       model.save(function (err) {
         should.not.exist(err);
 
@@ -81,7 +82,7 @@ describe.only('Ingredient Model', function () {
       });
     });
   });
-  
+
   it('should remove the document', function (done) {
     model.remove(function (err) {
       should.not.exist(err);

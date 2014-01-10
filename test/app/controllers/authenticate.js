@@ -1,8 +1,9 @@
-var request = require('supertest')
+var ROOT = process.env.ROOT
+  , request = require('supertest')
   , env = process.env.NODE_ENV || 'test'
-  , config = require('../../config/config')[env]
+  , config = require(ROOT + '/app/config/config')[env]
   , app = require('express')()
-  , httpStatus = require('../../app/helpers/http-status')
+  , httpStatus = require(ROOT + '/app/helpers/http-status')
   , passport = require('passport')
   , mongoose = require('mongoose')
   , User = mongoose.model('User')
@@ -11,9 +12,9 @@ var request = require('supertest')
   , async = require('async');
 
 // bootstrap passport config
-require('../../config/passport')(passport, config);
-require('../../config/express')(app, config, passport);
-require('../../config/routes')(app, passport);
+require(ROOT + '/app/config/passport')(passport, config);
+require(ROOT + '/app/config/express')(app, config, passport);
+require(ROOT + '/app/config/routes')(app, config, passport);
 
 var api = '/api/authenticate';
 describe('API ' + api, function () {

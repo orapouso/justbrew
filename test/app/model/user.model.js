@@ -2,12 +2,13 @@
  * User Model tests
  */
 
-var mongoose = require('mongoose')
+var ROOT = process.env.ROOT
+  , mongoose = require('mongoose')
   , env = process.env.NODE_ENV || 'test'
-  , config = require('../../config/config')[env]
+  , config = require(ROOT + '/app/config/config')[env]
   , User = mongoose.model('User')
   , should = require('should')
-  , bcrypt = require('bcrypt');
+  , crypto = require('crypto');
 
 describe('User Model', function () {
   require('../helper').mongoose(mongoose, config, 'user', User);
@@ -64,13 +65,15 @@ describe('User Model', function () {
     });
   });
 
-  it('should encrypt password with bcrypt encryption', function () {
+  it('should encrypt password with crypto encryption', function () {
     var user2 = new User({
       password: validPassword
     });
 
     user.hash.should.not.equal(user2.hash);
-    bcrypt.compareSync(validPassword, user.hash).should.be.true;
+    var salt = user.hash.split('::')[0];
+    var hash = salt + '::' + crypto.pbkdf2Sync(validPassword, salt, config.auth.iterations, 2^config.auth.saltSize).toString('base64')
+    hash.should.equal(user.hash);
   });
 
   it('should authenticate with right password', function () {

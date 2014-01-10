@@ -2,7 +2,6 @@
  * User Schema tests
  */
 
-require('../../app/models/user');
 var mongoose = require('mongoose')
   , SchemaTypes = mongoose.Schema.Types
   , User = mongoose.model('User')
