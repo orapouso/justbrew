@@ -1,5 +1,5 @@
-.logo{float:left;margin-left:15px;padding-left:90px;max-height: 20%; width:10%;}
-.title{color:#fff;}
+.logo{float:left;margin-left:15px;padding-left:90px;width:440px;background:url("../images/logo.png") no-repeat}
+.navbar-brand .title{color:#fff; padding-top:10px}
 .subtitle{color:#eee;font-size:16px;padding-top:2px}
 .user{font-size:16px;font-weight:bold;float:right;padding-top:40px;padding-right:40px}
 
