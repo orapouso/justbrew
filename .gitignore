@@ -25,4 +25,6 @@ results
 npm-debug.log
 
 #static files
-public/css
+src/public/css
+src/public/js
+src/public/templates
