@@ -65,13 +65,13 @@ module.exports = function (app, config, passport) {
       });
     }
 
-    //app.use(auth.requiresAuth);
+    app.use(auth.requiresAuth);
 
     // routes should be at the last
     app.use(app.router);
 
     // use express favicon
-    //app.use(express.favicon(config.root + '/public/images/favicon.ico'));
+    app.use(express.favicon(config.root + '/public/images/favicon.ico'));
 
     // custom error handler
     app.use(function (err, req, res, next) {

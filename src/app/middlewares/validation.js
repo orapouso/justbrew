@@ -1,35 +1,45 @@
 var httpStatus = require('../helpers/http-status');
 
-exports.checkURLParams = function () {
-  var params = Array.prototype.slice.call(arguments);
-  return function (req, res, next) {
-    var errors = [];
+exports.checkURLParams = checkParams('params');
 
-    params.forEach(function (param) {
-      if (!req.params[param.name]) {
-        errors.push({
-          name: 'URLParamError',
-          value: req.params[param.name] || '',
-          path: param.name,
-          message: param.name + ' param is empty'
-        });
-      } else {
-        if (typeof param.type === 'number' && !/[0-9]/.test(req.params[param.name])) {
-          errors.push({
-            name: 'URLParamError',
-            expected: (typeof param.type),
-            value: req.params[param.name],
-            path: param.name,
-            message: param.name + ' param is not a ' + (typeof param.type)
-          });
+exports.checkBodyParams = checkParams('body');
+
+function checkParams(where) {
+  return function (params) {
+    return function (req, res, next) {
+      var errors = [];
+
+      for (var param in params) {
+        if (params.hasOwnProperty(param)) {
+
+          if (!req[where][param]) {
+            errors.push({
+              name: 'URLParamError',
+              value: req[where][param] || '',
+              path: param,
+              message: param + ' param is empty'
+            });
+          } else {
+            if (typeof param === 'number' && !/[0-9]/.test(req[where][param])) {
+              errors.push({
+                name: 'URLParamError',
+                expected: (typeof param),
+                value: req[where][param],
+                path: param,
+                message: param + ' param is not a ' + (typeof param)
+              });
+            }
+          }
         }
+      };
+
+      if (errors.length > 0) {
+        return res.json(httpStatus.BAD_REQUEST, { errors: errors });
       }
-    });
 
-    if (errors.length > 0) {
-      return res.json(httpStatus.BAD_REQUEST, { errors: errors });
-    }
-
-    next();
+      next();
+    };
   };
 };
+
+

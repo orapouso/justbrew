@@ -40,7 +40,8 @@ module.exports = function (grunt) {
       },
       dev: {
         files: [
-          { expand: true, cwd: 'src/web/', src: ['templates/**'], dest: 'src/public/'}
+          { expand: true, cwd: 'src/web/', src: ['templates/**'], dest: 'src/public/'},
+          { expand: true, flatten: true, cwd: 'src/web/', src: ['components/**/*.map'], dest: 'src/public/js/'},
         ]
       }
     },

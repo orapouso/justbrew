@@ -21,6 +21,15 @@ var methods = ['get', 'post', 'put', 'del'];
 var apis = [{
   url: '/api/authenticate',
   allowed: ['post']
+}, {
+  url: '/api/companies',
+  allowed: ['get']
+}, {
+  url: '/api/company',
+  allowed: ['post']
+}, {
+  url: '/api/company/:id',
+  allowed: ['get']
 }];
 
 describe('API Method Not Allowed [405]', function () {
