@@ -1,0 +1,57 @@
+<html ng-app="justbrew">
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/login.css">
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <div class="logo">
+              <div class="title">Justbrew</div>
+              <div class="subtitle">Homebrew Accounting</div>
+              <div class="user" ng-show="user">{{user.name}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <form action="/api/authenticate" class="login form-horizontal" method="post">
+          <p class="error" ng-show="error">{{error}}</p>
+          <div class="form-group">
+            <label for="username" class="control-label">Email</label>
+            <div class="controls">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="text" name="username" placeholder="Email address" class="span2" required>
+              </div>
+            </div>
+            <label for="password" class="control-label">Password</label>
+            <div class="controls">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                <input type="password" name="password" placeholder="Password" class="span2" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="controls"><button class="btn btn-primary" type="submit">Login</button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="container">
+        <div class="p text-muted">
+          <span class="glyphicon glyphicon-copyright-mark">Santo de Casa 2014</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
