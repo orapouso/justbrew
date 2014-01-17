@@ -156,6 +156,7 @@ module.exports = function (grunt) {
             'src/web/scripts/util.js',
             'src/web/scripts/templates.js',
             'src/web/scripts/app.js',
+            'src/web/scripts/resources.js',
             'src/web/scripts/model.js',
             'src/web/scripts/controllers.js',
             'src/web/scripts/directives.js',

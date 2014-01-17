@@ -4,7 +4,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/login.css">
   </head>
@@ -25,17 +25,17 @@
         <form action="/api/authenticate" class="login form-horizontal" method="post">
           <p class="error" ng-show="error">{{error}}</p>
           <div class="form-group">
-            <label for="username" class="control-label">Username</label>
+            <label for="username" class="control-label">Email</label>
             <div class="controls">
               <div class="input-group">
-                <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input type="text" name="username" placeholder="Username" class="span2" required>
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <input type="text" name="username" placeholder="Email address" class="span2" required>
               </div>
             </div>
             <label for="password" class="control-label">Password</label>
             <div class="controls">
               <div class="input-group">
-                <span class="input-group-addon"><i class="icon-user"></i></span>
+                <span class="input-group-addon"><i class="fa fa-key"></i></span>
                 <input type="password" name="password" placeholder="Password" class="span2" required>
               </div>
             </div>

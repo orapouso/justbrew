@@ -1,0 +1,24 @@
+<div class="col-sm-10">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class="panel-title">Companies</div>
+      </div>
+    </div>
+    <div class="panel-content">
+      <form name="form" class="form-horizontal" method="post" ng-submit="send()">
+        <p class="error" ng-show="error">{{error}}</p>
+        <div class="form-group">
+          <label for="name" class="control-label">Name</label>
+          <div class="controls">
+            <div class="input-group">
+              <span class="input-group-addon"><i ng-class="{ 'fa-star': form.name.$valid, 'fa-star-o': !form.name.$valid}" class="fa"></i></span>
+              <input type="text" name="name" ng-model="company.name" placeholder="Name" class="span2" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="controls"><button class="btn btn-primary" type="submit">Submit</button></div>
+        </div>
+      </form>
+    </div>
+ </div>

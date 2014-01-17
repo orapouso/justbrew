@@ -11,13 +11,15 @@ module.exports = function (app, config, passport) {
     res.status(200).sendfile(config.root + '/public/templates/index.html');
   }
 
-  function login(req, res) {
-    res.status(200).sendfile(config.root + '/public/templates/login.html');
-  }
+  var indexes = ['/', '/ingredients', '/companies', '/company/**'];
 
-  app.get('/', index);
-  app.get('/ingredients', index);
-  app.get('/login', login);
+  indexes.forEach(function (path) {
+    app.get(path, index);
+  });
+
+  app.get('/login', function login(req, res) {
+    res.status(200).sendfile(config.root + '/public/templates/login.html');
+  });
 
   var users = require('../controllers/users');
   app.post('/api/authenticate', users.checkAuth, passport.authenticate('local'), users.authenticate);

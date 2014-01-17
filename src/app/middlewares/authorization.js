@@ -26,7 +26,7 @@ function respond(req, res, status) {
 exports.requiresAuth = function (req, res, next) {
   var authenticated = false;
   if (req.path.indexOf('authenticate') < 0 && req.path.indexOf('login') < 0) {
-    var accessToken = req.get('Authorization') || req.query.Authorization;
+    var accessToken = req.get('Authorization') || req.query.Authorization || req.cookies.Authorization;
 
     if (accessToken && accessToken !== '') {
       if (req.user && req.user.hasAccessToken(accessToken)) { //user logged in an has accessToken

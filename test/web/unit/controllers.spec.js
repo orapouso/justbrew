@@ -55,7 +55,7 @@ describe('Justbrew Controllers:', function () {
     });
 
     it('should request CompaniesRes GET method', function () {
-      var res = { result: [] };
+      var res = [];
       $hb.expectGET('/api/companies').respond(200, res);
       createController('CompaniesCtrl');
       $hb.flush();
@@ -82,7 +82,7 @@ describe('Justbrew Controllers:', function () {
 
     it('should not request CompanyRes GET method if id param is provided', function () {
       var id = 1;
-      var res = { result: { id: id} };
+      var res = { _id: id, name: 'name1' };
       $hb.expectGET('/api/company/' + id).respond(200, res);
       createController('CompanyCtrl', {$routeParams: {id: id} });
       $hb.flush();
