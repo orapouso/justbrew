@@ -133,8 +133,7 @@ module.exports = function (grunt) {
           ],
           'src/public/css/login.css': [
             'src/web/stylus/header.styl',
-            'src/web/stylus/app.styl',
-            'src/web/stylus/login.styl'
+            'src/web/stylus/app.styl'
           ]
         }
       }
