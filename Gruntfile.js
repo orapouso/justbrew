@@ -128,11 +128,6 @@ module.exports = function (grunt) {
         },
         files: {
           'src/public/css/app.css': [
-            'src/web/stylus/header.styl',
-            'src/web/stylus/app.styl'
-          ],
-          'src/public/css/login.css': [
-            'src/web/stylus/header.styl',
             'src/web/stylus/app.styl'
           ]
         }
@@ -162,9 +157,7 @@ module.exports = function (grunt) {
             'src/web/scripts/route.js'
           ],
           'src/public/js/login.js': [
-            'src/web/components/angular/angular.min.js',
-            'src/web/components/angular-cookies/angular-cookies.min.js',
-            'src/web/scripts/login.js',
+            'src/web/scripts/login.js'
           ]
         }
       }
