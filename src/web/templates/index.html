@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="justbrew">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justbrew</title>
@@ -8,51 +9,48 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="/css/app.css">
-    <script type="text/javascript" src="/js/app.js"></script>
-  </head>
-  <body ng-controller="MainCtrl">
-    <div id="wrap">
-      <div class="container">
-        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-          <div class="navbar-header">
-            <div class="row">
-              <a class="navbar-brand" href="/">
-                <div class="col-xs-2">
-                  <img class="img-responsive img-thumbnail" src="images/logo.jpg">
-                </div>
-                <div class="col-xs-10">
-                  <div class="h2 title">Justbrew</div>
-                  <h6>Homebrew Accounting</h5>
-                </div>
-              </a>
+</head>
+
+<body ng-controller="MainCtrl">
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container row">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <div class="col-xs-2">
+                        <img class="img-responsive img-thumbnail" src="images/logo.jpg">
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="h2 title">Justbrew</div>
+                        <h6>Homebrew Accounting</h5>
+                    </div>
+                </a>
             </div>
-          </div>
-          <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <div class="pull-right user" ng-show="user">{{username}}</div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2">
-            <div class="sidebar">
-              <ul class="nav">
-                <li><a href="/companies">Company</a></li>
-                <li><a href="/ingredients">Ingredients</a></li>
-                <li><a href="/equipments">Equipment</a></li>
-              </ul>
+            <div class="collapse navbar-collapse">
+              <p class="navbar-text col-xs-2" ng-show="user">{{username}}</p>
             </div>
-          </div>
-          <div class="col-lg-10 content" ng-view></div>
         </div>
-      </div>
     </div>
-    <div id="footer">
-      <div class="container">
-        <div class="p text-muted">
-          <span class="glyphicon glyphicon-copyright-mark">Santo de Casa 2014</span>
+    <div class="container row">
+        <div class="col-xs-2">
+          <ul class="nav nav-stacked">
+              <li><a href="/companies">Company</a>
+              </li>
+              <li><a href="/ingredients">Ingredients</a>
+              </li>
+              <li><a href="/equipments">Equipment</a>
+              </li>
+          </ul>
         </div>
-      </div>
+        <div class="col-xs-10 content" ng-view></div>
     </div>
-  </body>
+    <div class="navbar-fixed-bottom navbar-inverse">
+        <div class="container row">
+            <div class="col-xs-12">
+                <small class="text-muted glyphicon glyphicon-copyright-mark">Santo de Casa 2014</small>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/app.js"></script>
+
 </html>
