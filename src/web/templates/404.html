@@ -1,34 +1,46 @@
-<html ng-app="justbrew">
+<!DOCTYPE html>
+<html lang="en" ng-app="justbrew">
   <head>
-    <meta charset="UTF-8">
-    <title>Not Found</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="/css/app.css">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Justbrew - Not Found</title>
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="/css/app.css">
   </head>
+
   <body>
-    <div id="wrap">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <div class="logo">
-              <div class="title">Justbrew</div>
-              <div class="subtitle">Homebrew Accounting</div>
-              <div class="user" ng-show="user">{{user.name}}</div>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container row">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <div class="col-xs-2">
+                        <img class="img-responsive img-thumbnail" src="images/logo.jpg">
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="h2 title">Justbrew</div>
+                        <h6>Homebrew Accounting</h5>
+                    </div>
+                </a>
             </div>
-          </div>
+            <div class="collapse navbar-collapse">
+              <p class="navbar-text col-xs-2" ng-show="user">{{username}}</p>
+            </div>
         </div>
-      </div>
-      <h1>404</h1>
-      <p>Not Found!</p>
     </div>
-    <div id="footer">
-      <div class="container">
-        <div class="p text-muted">
-          <span class="glyphicon glyphicon-copyright-mark">Santo de Casa 2014</span>
+    <div class="container row">
+        <div class="col-xs-12 content">
+          <h1>404</h1>
+          <p>Not Found!</p>
         </div>
-      </div>
+    </div>
+    <div class="navbar-fixed-bottom navbar-inverse">
+        <div class="container row">
+            <div class="col-xs-12">
+                <small class="text-muted glyphicon glyphicon-copyright-mark">Santo de Casa 2014</small>
+            </div>
+        </div>
     </div>
   </body>
 </html>
