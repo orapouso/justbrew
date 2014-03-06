@@ -4,10 +4,12 @@ sudo apt-get install build-essential python-software-properties python g++ make 
 
 npm install
 
-make migrate
+grunt migrate
+grunt install
 mkdir log
 
 echo "Justbrew installed successfully"
-echo "node server.js to start on development mode"
-echo "NODE_ENV=production node server.js to start on production mode"
+echo "grunt dev to start development mode"
+echo "grunt server to start app server on development mode"
+echo "NODE_ENV=production grunt server to start on production mode"
 echo "Configuration can be modified in file: user-config.js"

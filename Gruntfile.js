@@ -80,7 +80,7 @@ module.exports = function (grunt) {
           archive: 'dist/<%= pkg.name %>-v<%=pkg.version %>.tar.gz'
         },
         files: [
-          {expand: true, cwd: 'build/', src:['**'], dest: '<%= pkg.name %>/'}
+          {expand: true, cwd: 'build/', src: ['**'], dest: '<%= pkg.name %>/'}
         ]
       }
     },
