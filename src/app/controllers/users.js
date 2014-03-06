@@ -2,12 +2,14 @@
  * Module dependencies
  */
 
-var httpStatus = require('../helpers/http-status')
-  , User = require('mongoose').model('User')
-  , logger = require('../logger');
+var httpStatus = require('../helpers/http-status'),
+  User = require('mongoose').model('User'),
+  logger = require('../logger');
 
 exports.login = function (req, res) {
-  res.render('users/login', {title: 'login'});
+  res.render('users/login', {
+    title: 'login'
+  });
 };
 
 exports.checkAuth = function (req, res, next) {
@@ -26,8 +28,10 @@ exports.checkAuth = function (req, res, next) {
   });
 
   if (errors.length > 0) {
-    return checkAccessTokenAuth(req, res, function () {
-      res.send(httpStatus.BAD_REQUEST, { errors: errors });
+    return checkAccessTokenAuth(req, res, function() {
+      res.send(httpStatus.BAD_REQUEST, {
+        errors: errors
+      });
     });
   }
 
@@ -45,7 +49,8 @@ function checkAccessTokenAuth(req, res, next) {
         req.user = user;
         return authenticate(req, res, next); //valid access token
       }
-      logger.log('warn', 'Access token authentication invalid for token=[%s]', accessToken);
+      logger.log('warn', 'Access token authentication invalid for token=[%s]', accessToken,
+        err);
       return res.send(httpStatus.UNAUTHORIZED); //invalid access token
     });
     return;
@@ -64,7 +69,10 @@ function authenticate(req, res) {
     username: req.user.username
   };
 
-  var ret = { user: user, accessToken: accessToken };
+  var ret = {
+    user: user,
+    accessToken: accessToken
+  };
   res.format({
     html: function () {
       return res.redirect('/?Authorization=' + accessToken);
