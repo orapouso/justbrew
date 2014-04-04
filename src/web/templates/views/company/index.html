@@ -2,12 +2,14 @@
   <div class="panel panel-success">
     <div class="panel-heading">
       <span class="panel-title">Companies</span>
-      <a href="/company/new" class="btn btn-xs btn-link"><span class="glyphicon glyphicon-plus"></span></a>
+      <a href="/company/new" class="btn btn-xs btn-link">
+        <span class="glyphicon glyphicon-plus"></span>
+      </a>
     </div>
-  </div>
-  <div class="panel-content">
-    <div class="company" ng-repeat="company in companies">
-      <div class="name">{{company.name}}</div>
+    <div class="panel-content">
+      <div class="company" ng-repeat="company in companies">
+        <div class="name">{{company.name}}</div>
+      </div>
     </div>
   </div>
 </div>

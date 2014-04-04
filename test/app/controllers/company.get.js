@@ -1,20 +1,23 @@
-var ROOT = process.env.ROOT
-  , request = require('supertest')
-  , env = process.env.NODE_ENV || 'test'
-  , config = require(ROOT + '/app/config/config')[env]
-  , app = require('express')()
-  , HTTP_STATUS = require(ROOT + '/app/helpers/http-status')
-  , mongoose = require('mongoose')
-  , Company = mongoose.model('Company')
-  , passport = require('passport')
-  , should = require('should');
+var ROOT = process.env.ROOT,
+  request = require('supertest'),
+  env = process.env.NODE_ENV || 'test',
+  config = require(ROOT + '/app/config/config')[env],
+  app = require('express')(),
+  HTTP_STATUS = require(ROOT + '/app/helpers/http-status'),
+  mongoose = require('mongoose'),
+  Company = mongoose.model('Company'),
+  passport = require('passport'),
+  should = require('should');
 
 var loggedIn = false;
-app.use(function (req, res, next) {
+
+app.use(function(req, res, next) {
   req.user = {
     _id: '518d3bed82cc75c105000006',
     username: 'username1',
-    hasAccessToken: function () { return loggedIn; }
+    hasAccessToken: function() {
+      return loggedIn;
+    }
   };
 
   next();
@@ -24,11 +27,11 @@ require(ROOT + '/app/config/express')(app, config, passport);
 require(ROOT + '/app/config/routes')(app, config, passport);
 
 var apiTemplate = '/api/company/:id';
-describe('API GET ' + apiTemplate, function () {
+describe('API GET ' + apiTemplate, function() {
   var oldFindById, company, givenId = '518d3bed82cc75c105000006';
-  before(function () {
+  before(function() {
     oldFindById = Company.findById;
-    Company.findById = function (id, callback) {
+    Company.findById = function(id, callback) {
       if (id === '1') {
         callback(null, null);
       } else {
@@ -42,12 +45,12 @@ describe('API GET ' + apiTemplate, function () {
     });
   });
 
-  after(function () {
+  after(function() {
     Company.findById = oldFindById;
   });
 
   var api = apiTemplate.replace(':id', givenId);
-  it('on [ GET ] without authentication should return [ ' + HTTP_STATUS.UNAUTHORIZED + ' ' + HTTP_STATUS['401'] + ' ]', function (done) {
+  it('on [ GET ] without authentication should return [ ' + HTTP_STATUS.UNAUTHORIZED + ' ' + HTTP_STATUS['401'] + ' ]', function(done) {
     request(app)
       .get(api)
       .set('Accept', 'application/json')
@@ -55,7 +58,7 @@ describe('API GET ' + apiTemplate, function () {
       .expect('Content-type', /application\/json/, done);
   });
 
-  it('on [ GET ] with authentication should return [ ' + HTTP_STATUS.OK + ' ' + HTTP_STATUS['200'] + ' ]', function (done) {
+  it('on [ GET ] with authentication should return [ ' + HTTP_STATUS.OK + ' ' + HTTP_STATUS['200'] + ' ]', function(done) {
     loggedIn = true;
 
     request(app)
@@ -64,7 +67,7 @@ describe('API GET ' + apiTemplate, function () {
       .set('Authorization', 'valid_authorization')
       .expect(HTTP_STATUS.OK)
       .expect('Content-type', /application\/json/)
-      .end(function (err, res) {
+      .end(function(err, res) {
         should.not.exist(err);
         res.body.name.should.equal('name1');
         done();
@@ -72,7 +75,7 @@ describe('API GET ' + apiTemplate, function () {
   });
 
   var notFoundApi = apiTemplate.replace(':id', 1);
-  it('on [ GET ] with non existing id should return [ ' + HTTP_STATUS.NOT_FOUND + ' ' + HTTP_STATUS['404'] + ' ]', function (done) {
+  it('on [ GET ] with non existing id should return [ ' + HTTP_STATUS.NOT_FOUND + ' ' + HTTP_STATUS['404'] + ' ]', function(done) {
     loggedIn = true;
 
     request(app)

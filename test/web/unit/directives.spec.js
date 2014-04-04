@@ -1,4 +1,4 @@
-/*global describe, it, expect, module, angular, document, waits, runs */
+/* global describe, it, expect, module, angular, document, waits, runs */
 
 describe('Justbrew Directives:', function () {
   'use strict';
@@ -13,88 +13,6 @@ describe('Justbrew Directives:', function () {
   beforeEach(inject(function ($rootScope) {
     $s = $rootScope.$new();
   }));
-
-  describe('Filter timecode', function () {
-    var $f, offsetms = new Date().getTimezoneOffset() * 60 * 1000;
-    var dateFilter, timecodeFilter;
-    beforeEach(inject(function ($filter) {
-      $f = $filter;
-      dateFilter = function (input, format) {
-        if (angular.isNumber(input)) {
-          input += offsetms;
-        }
-        return $f('date')(input, format);
-      };
-      timecodeFilter = $f('timecode');
-    }));
-
-    it('should return 00:00:00:00 for invalid input', function () {
-      expect(timecodeFilter(null)).toBe('00:00:00:00');
-      expect(timecodeFilter(undefined)).toBe('00:00:00:00');
-      expect(timecodeFilter('')).toBe('00:00:00:00');
-      expect(timecodeFilter('invalid')).toBe('00:00:00:00');
-      expect(timecodeFilter(0)).toBe('00:00:00:00');
-      expect(timecodeFilter(1000, 'HH:mm:ss.sss')).toBe('00:00:01.000');
-      expect(timecodeFilter(1100, 'HH:mm:ss.sss')).toBe('00:00:01.100');
-      expect(timecodeFilter(152123.456789, 'HH:mm:ss.sss')).toBe('00:02:32.123');
-      expect(timecodeFilter(152001.23, 'HH:mm:ss.sss')).toBe('00:02:32.001');
-      expect(timecodeFilter(152201.23, 'HH:mm:ss.sss')).toBe('00:02:32.201');
-      expect(timecodeFilter(3752201.23, 'HH:mm:ss.sss')).toBe('01:02:32.201');
-    });
-
-    it('should act like a normal date filter for formats without "frame"', function () {
-      var d = 1;
-      var dateString = dateFilter(d, 'medium');
-      var timecodeString = timecodeFilter(d, 'medium');
-      expect(dateString).toBe(timecodeString);
-
-      d = new Date();
-      dateString = dateFilter(d, 'medium');
-      timecodeString = timecodeFilter(d, 'medium');
-      expect(dateString).toBe(timecodeString);
-    });
-
-    it('should convert without drop frame', function () {
-      var frames = 1799;
-      var format = 'HH:mm:ss:ff';
-
-      var timecodeString = timecodeFilter(frames, format, false);
-      expect(timecodeString).toBe('00:00:59:29');
-
-      frames = 1800;
-      timecodeString = timecodeFilter(frames, format, false);
-      expect(timecodeString).toBe('00:01:00:00');
-    });
-
-    it('should convert with drop frame', function () {
-      var frames = 1799;
-      var format = 'HH:mm:ss:ff';
-
-      var timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:00:59:29');
-
-      frames = 1800;
-      timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:01:00:02');
-
-      frames += 1;
-      timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:01:00:03');
-      frames -= 1;
-
-      frames = (frames * 2) - 2;
-      timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:02:00:02');
-
-      frames = (frames * 5) - 8;
-      timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:10:00:00');
-
-      frames += 1;
-      timecodeString = timecodeFilter(frames, format);
-      expect(timecodeString).toBe('00:10:00:01');
-    });
-  });
 
   describe('Directive lazy-src', function () {
     var $c;
